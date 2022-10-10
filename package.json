@@ -1,0 +1,40 @@
+{
+  "name": "revanced-cdn-action",
+  "version": "0.1.0",
+  "description": "🚀 Because delivering content is hard",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "del-cli ./dist && ncc build ./src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/revanced/revanced-cdn-action.git"
+  },
+  "keywords": [
+    "revanced",
+    "cdn",
+    "action",
+    "actions"
+  ],
+  "author": "ReVanced",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/revanced/revanced-cdn-action/issues"
+  },
+  "homepage": "https://github.com/revanced/revanced-cdn-action#readme",
+  "devDependencies": {
+    "@types/graceful-fs": "^4.1.5",
+    "@types/node": "^18.8.3",
+    "@types/node-fetch": "^2.6.2",
+    "@vercel/ncc": "^0.34.0",
+    "del-cli": "^5.0.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
+    "fast-glob": "^3.2.12",
+    "node-fetch": "^2.6.7",
+    "web3.storage": "^4.4.0"
+  }
+}

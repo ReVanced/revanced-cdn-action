@@ -1,0 +1,23 @@
+name: 'ReVanced CDN Action'
+author: 'ReVanced'
+description: "Upload artifacts to ReVanced's CDN"
+inputs:
+  files:
+    description: 'A list of globs to upload, do not include too many files as it may cause ratelimits. This is a multi-line input.'
+    required: true
+  api-url:
+    description: 'The endpoint to send a POST request to once files are uploaded.'
+    required: false
+  secret:
+    description: 'The Web3 Storage access token.'
+    required: true
+  api-user-agent:
+    description: 'If you have multiple repositories that uses the same token, this will be useful to identify which repository is sending the data.'
+    required: false
+    default: 'ReVanced-Repository'
+outputs:
+  files:
+    description: 'A JSON array containing data sent to the endpoint.'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
