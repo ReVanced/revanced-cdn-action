@@ -15,7 +15,7 @@ import fetch from 'node-fetch'
     const ua = getInput('api-user-agent')
     // const throwOnBadVersionString = getBooleanInput('throw_on_bad_version_string')
 
-    if (ua.match(/\s/)) return core.setFailed('Specified User-Agent contains whitespaces, please remove any whitespaces in the User-Agent string.')
+    if (ua.match(/\s/)) return setFailed('Specified User-Agent contains whitespaces, please remove any whitespaces in the User-Agent string.')
 
     // Create client
     const client = new Web3Storage({
