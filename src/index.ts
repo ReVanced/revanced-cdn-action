@@ -116,7 +116,8 @@ function debugLog(...elements: any[]) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-          'User-Agent': apiUserAgent
+        'User-Agent': apiUserAgent,
+        'Authorization': apiAuthHeader
       }
    })
 
