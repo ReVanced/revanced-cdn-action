@@ -10,9 +10,9 @@ import fetch from 'node-fetch'
 
     // Action options
     const globs = getMultilineInput('files', { required: true })
-    const apiUrl = getInput('api_url')
+    const apiUrl = getInput('api-url')
     const secret = getInput('secret', { required: true })
-    const ua = getInput('api_user_agent')
+    const ua = getInput('api-user-agent')
     // const throwOnBadVersionString = getBooleanInput('throw_on_bad_version_string')
 
     // Create client
