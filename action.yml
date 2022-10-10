@@ -15,6 +15,12 @@ inputs:
     description: 'If you have multiple repositories that uses the same token, this will be useful to identify which repository is sending the data.'
     required: false
     default: 'ReVanced-Repository'
+  api-auth-header:
+    description: 'If necessary, add the authorization header value here.'
+    required: false
+  main-file-pattern:
+    description: 'A regular expression to match your main file. Main files are the file used for recognizing versions.'
+    required: false
 outputs:
   files:
     description: 'A JSON array containing data sent to the endpoint.'
