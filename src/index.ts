@@ -1,4 +1,4 @@
-import { getInput, getMultilineInput } from '@actions/core'
+import { getInput, getMultilineInput, setFailed } from '@actions/core'
 import { lstatSync, readFileSync } from 'fs'
 import { Web3Storage } from 'web3.storage'
 import { sync as glob } from 'fast-glob'
@@ -14,6 +14,8 @@ import fetch from 'node-fetch'
     const secret = getInput('secret', { required: true })
     const ua = getInput('api-user-agent')
     // const throwOnBadVersionString = getBooleanInput('throw_on_bad_version_string')
+
+    if (ua.match(/\s/)) return core.setFailed('Specified User-Agent contains whitespaces, please remove any whitespaces in the User-Agent string.')
 
     // Create client
     const client = new Web3Storage({
