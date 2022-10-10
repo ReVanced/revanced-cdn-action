@@ -4,11 +4,9 @@ import { Web3Storage } from 'web3.storage'
 import fg from 'fast-glob'
 import path from 'path'
 import { Readable } from 'stream'
+import fetch from 'node-fetch'
 
-// node-fetch@<3 requires you to import like this
-
-import * as _nf from 'node-fetch'
-const { default: fetch } = _nf
+(async () => {
 
 const globList = core.getMultilineInput('files', { required: true })
 const apiUrl = core.getInput('api_url')
@@ -46,3 +44,5 @@ if (apiUrl) stores.forEach(({ cId, file }) => {
     }
   })
 })
+
+})()
