@@ -1,48 +1,69 @@
-import * as core from '@actions/core'
-import fs from 'fs'
+import { getInput, getMultilineInput } from '@actions/core'
+import { lstatSync, readFileSync } from 'fs'
 import { Web3Storage } from 'web3.storage'
-import fg from 'fast-glob'
-import path from 'path'
+import { sync as glob } from 'fast-glob'
+import { resolve, basename } from 'path'
 import { Readable } from 'stream'
 import fetch from 'node-fetch'
 
 (async () => {
 
-const globList = core.getMultilineInput('files', { required: true })
-const apiUrl = core.getInput('api_url')
-const secret = core.getInput('secret', { required: true })
-const ua = core.getInput('api_user_agent')
+    // Action options
+    const globs = getMultilineInput('files', { required: true })
+    const apiUrl = getInput('api_url')
+    const secret = getInput('secret', { required: true })
+    const ua = getInput('api_user_agent')
+    // const throwOnBadVersionString = getBooleanInput('throw_on_bad_version_string')
 
-const client = new Web3Storage({ token: secret })
+    // Create client
+    const client = new Web3Storage({
+        token: secret
+    })
 
-const paths = fg.sync(globList).map(fp => path.resolve(process.cwd(), fp))
-const blobs = paths
-  .filter(fp => !fs.lstatSync(fp).isDirectory())
-  .map(fp => { return { blob: new Blob([ fs.readFileSync(fp) ], { type: 'application/octet-stream' }), name: path.basename(fp) } })
 
-const files = blobs.map(({ blob, name }) => new File([ blob ], name))
-
-const stores = await Promise.all(
-  files.map(file => {
-    return { cId: client.put([ file ]), file }
-  })
-)
-
-if (apiUrl) stores.forEach(({ cId, file }) => {
-  fetch(apiUrl, {
-    body: Readable.from(
-      JSON.stringify({
-        cid: cId,
-        version: null,
-        filename: file.name
+    const files = glob(globs)
+      // Map to absolute paths
+      .map(fp => resolve(process.cwd(), fp))
+      // Filter non-directory entries
+      .filter(fp => !lstatSync(fp).isDirectory())
+      // Map it to an object
+      .map(fp => {
+          return {
+              data: new Blob([ readFileSync(fp) ], {
+                  type: 'application/octet-stream'
+              }), 
+              name: basename(fp)
+          }
       })
-    ),
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'User-Agent': ua
-    }
-  })
-})
+      // Map the object to File
+      .map(blob => new File([ blob.data ], blob.name))
+    
+    // Send requests to create entries for those one by one and retrieve CIDs
+    const stores = await Promise.all(
+        files.map(file => {
+            return {
+                cid: client.put([ file ]), file
+            }
+        })
+    )
+
+
+    // If an API URL is specified, send a POST request with data
+    if (apiUrl) stores.forEach(({ cid, file }) =>
+        fetch(apiUrl, {
+            body: Readable.from(
+                JSON.stringify({
+                    cid,
+                    version: null,
+                    filename: file.name
+                })
+            ),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'User-Agent': ua
+            }
+        })
+    )
 
 })()
