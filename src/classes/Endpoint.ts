@@ -12,31 +12,13 @@ export default class Endpoint {
         }
     }
 
-    async fetchToken() {
-        const res = await fetch(this.options.authUrl, {
-            body: Endpoint.createRequestBody({
-                id: this.options.id,
-                secret: this.options.secret
-            }),
-            method: 'GET',
-            headers: this.headers
-        })
-
-        if (!res.ok) fail(`Could not get bearer token from endpoint, endpoint returned status ${res.status}`)
-
-        const json = await res.json()
-        if (!('access_token' in json) || !json.access_token) fail(`Could not get bearer token from endpoint, endpoint did not supply access_token field`)
-
-        return json.access_token as string
-    }
-
-    async postData(body: PostDataOptions, token: string) {
+    async postData(body: PostDataOptions) {
         const res = await fetch(this.options.url, {
             body: Endpoint.createRequestBody(body),
             method: 'POST',
             headers: {
                 ...this.headers,
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${this.options.token}`
             }
         })
 
@@ -54,8 +36,7 @@ export interface EndpointOptions {
     url: string
     authUrl: string
     
-    id: string
-    secret: string
+    token: string
 
     userAgent?: string
 }
