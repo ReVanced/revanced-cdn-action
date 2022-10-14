@@ -18,8 +18,7 @@ import { setOutput } from '@actions/core'
         mainFilePattern: options.mainFilePattern,
         endpoint: options.endpoint,
         endpointUserAgent: options.endpointUA,
-        endpointClientId: options.endpointClientId,
-        endpointSecret: '*'.repeat(options.endpointSecret.length)
+        endpointToken: '*'.repeat(options.endpointToken.length)
     })
 
 
@@ -77,29 +76,20 @@ import { setOutput } from '@actions/core'
         version: versions[0].version
     }
 
-    if (options.endpoint && options.authEndpoint && options.endpointClientId && options.endpointSecret) {
+    if (options.endpoint && options.authEndpoint && options.endpointToken) {
         debugLog('Enough API options are supplied')
 
         const endpoint = new Endpoint({
             url: options.endpoint,
             authUrl: options.authEndpoint,
-            id: options.endpointClientId,
-            secret: options.endpointSecret
+            token: options.endpointToken
         })
 
-        const token = await endpoint.fetchToken()
-        await endpoint.postData(apiPostData, token)
+        await endpoint.postData(apiPostData)
 
         debugLog('POST request has been made.')
     } else {
         debugLog('Not enough API options supplied.')
-        debugLog(`There ${options.endpointSecret ? 'is' : 'is not'} an endpoint secret.`)
-        debugLog({
-            endpoint: options.endpoint,
-            authEndpoint: options.authEndpoint,
-            endpointClientId: options.endpointClientId,
-            endpointSecret: '*'.repeat(options.endpointSecret.length)
-        })
     }
 
     setOutput('files', JSON.stringify(apiPostData))
