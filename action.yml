@@ -14,13 +14,10 @@ inputs:
   endpoint-user-agent:
     description: 'The User-Agent string for every request to the endpoint.'
     required: false
-  endpoint-client-id:
-    description: 'The client ID for the authentication endpoint'
+  endpoint-token:
+    description: 'The access token for the authentication endpoint'
     required: false
-  endpoint-secret:
-    description: 'The secret for the authentication endpoint'
-    required: false
-  cdn-secret:
+  cdn-token:
     description: 'The Web3 Storage access token.'
     required: true
   main-file-pattern:
