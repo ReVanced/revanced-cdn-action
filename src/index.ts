@@ -18,7 +18,8 @@ import { setOutput } from '@actions/core'
         mainFilePattern: options.mainFilePattern,
         endpoint: options.endpoint,
         endpointUserAgent: options.endpointUA,
-        endpointToken: '*'.repeat(options.endpointToken.length)
+        endpointToken: '*'.repeat(options.endpointToken.length),
+        cdnToken: '*'.repeat(options.cdnToken.length)
     })
 
 
@@ -28,7 +29,7 @@ import { setOutput } from '@actions/core'
 
     // Create client
     const client = new Web3Storage({
-        token: options.endpointSecret
+        token: options.cdnToken
     })
 
     debugLog('CDN Client has been initialized.')
