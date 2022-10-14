@@ -1,18 +1,6 @@
 {
   "branches": [
-    "main",
-    {
-      "name": "dev",
-      "prerelease": true
-    },
-    {
-      "name": "feat-*",
-      "prerelease": true
-    },
-    {
-      "name": "fix-*",
-      "prerelease": true
-    }
+    "main"
   ],
   "plugins": [
     [
