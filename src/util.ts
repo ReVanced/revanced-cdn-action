@@ -40,8 +40,7 @@ export function getOptions() {
 
         // Endpoint Authorization
 
-        endpointClientId: getInput('endpoint-client-id'),
-        endpointSecret: getInput('endpoint-secret'),
+        endpointClientId: getInput('endpoint-token'),
 
         // CDN Authorization
 
