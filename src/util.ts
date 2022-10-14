@@ -44,6 +44,6 @@ export function getOptions() {
 
         // CDN Authorization
 
-        cdnSecret: getInput('cdn-secret', { required: true })
+        cdnToken: getInput('cdn-token', { required: true })
     }
 }
