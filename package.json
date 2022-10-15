@@ -4,7 +4,8 @@
   "description": "🚀 Because delivering content is hard",
   "main": "dist/index.js",
   "scripts": {
-    "build": "del-cli ./dist && ncc build ./src/index.ts"
+    "build": "del-cli ./dist && ncc build ./src/index.ts",
+    "test": "echo \"No tests yet!\" && exit 0"
   },
   "repository": {
     "type": "git",
