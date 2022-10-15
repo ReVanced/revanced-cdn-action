@@ -3,27 +3,29 @@ author: 'ReVanced'
 description: "Upload artifacts to ReVanced's CDN"
 inputs:
   files:
-    description: 'A list of globs to upload, do not include too many files as it may cause ratelimits. This is a multi-line input.'
+    description: 'A list of globs to upload. This is a multi-line input.'
     required: true
-  api-url:
+  endpoint:
     description: 'The endpoint to send a POST request to once files are uploaded.'
     required: false
-  secret:
+  auth-endpoint:
+    description: 'The authentication endpoint to send endpoint client ID and secret to gain the bearer token.'
+    required: false
+  endpoint-user-agent:
+    description: 'The User-Agent string for every request to the endpoint.'
+    required: false
+  endpoint-token:
+    description: 'The access token for the authentication endpoint'
+    required: false
+  cdn-token:
     description: 'The Web3 Storage access token.'
     required: true
-  api-user-agent:
-    description: 'If you have multiple repositories that uses the same token, this will be useful to identify which repository is sending the data.'
-    required: false
-    default: 'ReVanced-Repository'
-  api-auth-header:
-    description: 'If necessary, add the authorization header value here.'
-    required: false
   main-file-pattern:
-    description: 'A regular expression to match your main file. Main files are the file used for recognizing versions.'
+    description: 'A ES regular expression to match your main file. Main files are the file used for recognizing versions.'
     required: false
 outputs:
   files:
-    description: 'A JSON array containing data sent to the endpoint.'
+    description: 'The data sent to the endpoint. This will always exist no matter the data is sent or not.'
 runs:
   using: 'node16'
   main: 'dist/index.js'
