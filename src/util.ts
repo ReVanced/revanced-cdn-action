@@ -30,13 +30,13 @@ export function getOptions() {
         // File System Configuration
 
         files: getMultilineInput('files', { required: true }),
-        mainFilePattern: getInput('main-file-pattern') ?? '.+',
+        mainFilePattern: getInput('main-file-pattern'),
 
         // Endpoint Configuration
 
         endpoint: getInput('endpoint'),
         authEndpoint: getInput('auth-endpoint'),
-        endpointUA: getInput('endpoint-user-agent') ?? 'ReVanced-Application',
+        endpointUA: getInput('endpoint-user-agent'),
 
         // Endpoint Authorization
 
