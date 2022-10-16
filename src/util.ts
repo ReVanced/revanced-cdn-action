@@ -36,7 +36,7 @@ export function getOptions() {
 
         endpoint: getInput('endpoint'),
         authEndpoint: getInput('auth-endpoint'),
-        endpointUA: getInput('endpoint-user-agent'),
+        endpointUA: getInput('endpoint-user-agent') ?? 'ReVanced-Application',
 
         // Endpoint Authorization
 
