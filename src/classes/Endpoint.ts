@@ -1,9 +1,9 @@
-import fetch from 'node-fetch'
+import fetch, { HeadersInit } from 'node-fetch'
 import { Readable } from 'stream'
 import { fail } from '../util'
 
 export default class Endpoint {
-    headers: any
+    headers: HeadersInit
 
     constructor(private options: EndpointOptions) {
         this.headers = {
@@ -38,7 +38,7 @@ export interface EndpointOptions {
     
     token: string
 
-    userAgent?: string
+    userAgent: string
 }
 
 export interface PostDataOptions {
