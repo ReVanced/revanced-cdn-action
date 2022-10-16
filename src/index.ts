@@ -83,7 +83,8 @@ import { setOutput } from '@actions/core'
         const endpoint = new Endpoint({
             url: options.endpoint,
             authUrl: options.authEndpoint,
-            token: options.endpointToken
+            token: options.endpointToken,
+            userAgent: options.endpointUA
         })
 
         await endpoint.postData(apiPostData)
