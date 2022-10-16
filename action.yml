@@ -8,21 +8,26 @@ inputs:
   endpoint:
     description: 'The endpoint to send a POST request to once files are uploaded.'
     required: false
+    default: ''
   auth-endpoint:
     description: 'The authentication endpoint to send endpoint client ID and secret to gain the bearer token.'
     required: false
+    default: ''
   endpoint-user-agent:
     description: 'The User-Agent string for every request to the endpoint.'
     required: false
+    default: 'ReVanced-Application'
   endpoint-token:
     description: 'The access token for the authentication endpoint'
     required: false
+    default: ''
   cdn-token:
     description: 'The Web3 Storage access token.'
     required: true
   main-file-pattern:
     description: 'A ES regular expression to match your main file. Main files are the file used for recognizing versions.'
     required: false
+    default: '.+'
 outputs:
   files:
     description: 'The data sent to the endpoint. This will always exist no matter the data is sent or not.'
