@@ -30,7 +30,7 @@ export function getOptions() {
         // File System Configuration
 
         files: getMultilineInput('files', { required: true }),
-        mainFilePattern: getInput('main-file-pattern') ?? '.+',
+        mainFilePattern: getInput('main-file-pattern'),
 
         // Endpoint Configuration
 
