@@ -35,11 +35,7 @@ export function getOptions() {
         // Endpoint Configuration
 
         endpoint: getInput('endpoint'),
-        authEndpoint: getInput('auth-endpoint'),
         endpointUA: getInput('endpoint-user-agent'),
-
-        // Endpoint Authorization
-
         endpointToken: getInput('endpoint-token'),
 
         // CDN Authorization
