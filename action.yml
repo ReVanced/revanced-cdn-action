@@ -9,10 +9,6 @@ inputs:
     description: 'The endpoint to send a POST request to once files are uploaded.'
     required: false
     default: ''
-  auth-endpoint:
-    description: 'The authentication endpoint to send endpoint client ID and secret to gain the bearer token.'
-    required: false
-    default: ''
   endpoint-user-agent:
     description: 'The User-Agent string for every request to the endpoint.'
     required: false

@@ -77,12 +77,11 @@ import { setOutput } from '@actions/core'
         version: versions[0].version
     }
 
-    if (options.endpoint && options.authEndpoint && options.endpointToken) {
+    if (options.endpoint && options.endpointUA && options.endpointToken) {
         debugLog('Enough API options are supplied')
 
         const endpoint = new Endpoint({
             url: options.endpoint,
-            authUrl: options.authEndpoint,
             token: options.endpointToken,
             userAgent: options.endpointUA
         })

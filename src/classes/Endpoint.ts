@@ -34,10 +34,7 @@ export default class Endpoint {
 
 export interface EndpointOptions {
     url: string
-    authUrl: string
-    
     token: string
-
     userAgent: string
 }
 
