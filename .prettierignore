@@ -1,0 +1,8 @@
+# Everything
+*
+
+# But not the TS files!
+!*.ts
+
+# Don't forget to check subdirectories as well
+!*/

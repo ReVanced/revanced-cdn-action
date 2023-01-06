@@ -1,11 +1,11 @@
 # Security Policy
 
-## Supported Tags
+## Supported tags
 
-| Tag     | ReVanced Version   |
-| ------- | ------------------ |
-| latest  | latest upstream    |
+| Tag    | ReVanced Version |
+| ------ | ---------------- |
+| latest | latest upstream  |
 
-## Reporting a Vulnerability
+## Reporting a vulnerability
 
 To report a vulnerability, please open an Issue in our issue tracker here on GitHub.
